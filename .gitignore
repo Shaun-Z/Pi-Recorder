@@ -279,4 +279,15 @@ tools/gotestsum.exe.hash
 !tsc/testdata/submoduleAccepted.txt
 
 !tsc/testdata/submoduleTriaged.txt
+
 mise.local.toml
+docs/
+
+# Publish the English development guide while ignoring other local documents.
+!docs/
+docs/*
+!docs/pi-extension-development-debugging-guide.md
+
+# Local Pi traces and isolated development sessions
+.pi/loop-in-loop/
+test-workspace/

@@ -1,21 +1,37 @@
 {
-  "name": "loop-in-loop",
+  "name": "pi-recorder",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Record Pi turns locally and explore them in a live browser timeline",
+  "type": "module",
+  "pi": {
+    "extensions": ["./src/index.ts"]
+  },
+  "files": ["src", "README.md"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check": "tsc --noEmit",
+    "test": "node --import tsx --test test/*.test.ts",
+    "viewer": "node --import tsx src/viewer-cli.ts",
+    "test:pi": "node --import tsx test/pi-smoke.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Shaun-Z/Loop-in-Loop.git"
+    "url": "git+https://github.com/Shaun-Z/Pi-Recorder.git"
   },
-  "keywords": [],
+  "keywords": ["pi-package", "pi-extension", "tracing", "visualization"],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/Shaun-Z/Loop-in-Loop/issues"
+  "engines": { "node": ">=22.19.0" },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "^1.4.0"
   },
-  "homepage": "https://github.com/Shaun-Z/Loop-in-Loop#readme"
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "1.4.0",
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Shaun-Z/Pi-Recorder/issues"
+  },
+  "homepage": "https://github.com/Shaun-Z/Pi-Recorder#readme"
 }

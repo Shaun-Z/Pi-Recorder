@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pi-Recorder · Pi 运行记录</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="toolbar">
+    <div class="brand"><span class="mark">◎</span><strong>Pi-Recorder</strong><span class="subtitle">PI 运行记录</span></div>
+    <div class="actions"><span id="connection" role="status">连接中…</span><button id="refresh">刷新</button><a id="download" class="button" hidden>下载 JSONL</a></div>
+  </header>
+  <div id="error" role="alert" hidden></div>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="section-heading"><h2>会话</h2><span id="session-count" class="muted"></span></div>
+      <input id="session-search" type="search" placeholder="搜索会话、模型…" aria-label="搜索会话">
+      <div id="project" class="project" title="当前项目"></div>
+      <nav id="sessions" aria-label="会话列表"><p class="empty">正在读取本地记录…</p></nav>
+      <footer>数据仅保存在当前项目<br><code>.pi/loop-in-loop</code></footer>
+    </aside>
+    <main>
+      <div class="session-heading"><div><span class="eyebrow">SESSION</span><h1 id="session-title">选择会话</h1><div id="session-meta" class="muted"></div></div><span id="session-state" class="badge"></span></div>
+      <section class="stats" aria-label="会话统计">
+        <div><strong id="stat-turns">—</strong><span>模型 turn</span></div>
+        <div><strong id="stat-tokens">—</strong><span>总 token</span></div>
+        <div><strong id="stat-duration">—</strong><span>累计任务耗时</span></div>
+        <div><strong id="stat-cost">—</strong><span>费用估算 · USD</span></div>
+      </section>
+      <div class="workspace">
+        <section class="timeline-panel" aria-label="执行时间线">
+          <div class="section-heading"><h2>执行时间线</h2><button id="all-events" class="text-button">查看会话全部事件</button></div>
+          <div id="timeline"><p class="empty">选择会话后，展开每个任务的 turn 和工具调用。</p></div>
+        </section>
+        <section class="details-panel" aria-label="事件详情">
+          <div class="section-heading"><h2 id="detail-title">事件详情</h2><label class="follow"><input id="follow" type="checkbox" checked> 跟随最新</label></div>
+          <div class="tabs" role="group" aria-label="事件分类">
+            <button data-category="messages">消息</button><button data-category="context">上下文 / 请求</button><button data-category="tools">工具</button><button data-category="" class="selected">全部事件</button>
+          </div>
+          <div class="filters">
+            <input id="event-search" type="search" placeholder="搜索完整内容…" aria-label="搜索事件内容">
+            <input id="event-type" placeholder="事件类型" aria-label="按事件类型筛选">
+            <input id="tool-name" placeholder="工具名" aria-label="按工具名筛选">
+            <label><input id="errors-only" type="checkbox"> 仅错误</label>
+          </div>
+          <div id="event-count" class="muted list-meta"></div>
+          <div id="events"><p class="empty">尚未选择会话。</p></div>
+          <button id="more" hidden>加载更早的事件</button>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
